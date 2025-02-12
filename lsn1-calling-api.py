@@ -1,11 +1,11 @@
 from anthropic import Anthropic
-from dotenv import dotenv_values
+from dotenv import load_dotenv
+import os
 
-config = dotenv_values(".env.local")  # config = {"USER": "foo", "EMAIL": "foo@example.org"}
+load_dotenv(dotenv_path='.env.development.local')
+api_key = os.getenv("ANTHROPIC_API_KEY")
 
-load_dotenv()  # take environment variables from .env.
-
-client = Anthropic()
+client = Anthropic(api_key=api_key)
 MODEL_NAME="claude-3-5-sonnet-20241022"
 print("Simple Chatbot (type 'quit' to exit)")
 # Store conversation history
